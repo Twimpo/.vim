@@ -1,0 +1,12 @@
+{
+	"suggest.noselect": true,
+	"suggest.enablePreselect": false,
+	"inlayHint.display": false,
+	
+	// Highlight
+	"semanticTokens.enable": true,
+
+	// explorer
+	"explorer.icon.enableNerdfont": true,
+	"explorer.icon.source": "vim-devicons",
+}
