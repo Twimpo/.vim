@@ -24,12 +24,32 @@ let g:tokyonight_enable_italic = 1
 
 colorscheme tokyonight
 
-" Buttom line (airline)
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
+" Buttom line (airline, lightline)
+"" ( airline )
+" set laststatus=2
+" let g:airline#extensions#tabline#enabled = 1
 
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+
+"" ( lightline )
+set laststatus=2
+let g:lightline = {
+			\ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename' ] ],
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ },
+      \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
 
 " Base keymap
 imap jk <ESC>
@@ -166,8 +186,9 @@ Plug 'jiangmiao/auto-pairs'
 " Color theme
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " Terminal
 Plug 'voldikss/vim-floaterm'
