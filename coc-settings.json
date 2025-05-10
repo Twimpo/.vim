@@ -8,5 +8,6 @@
 
 	// explorer
 	"explorer.icon.enableNerdfont": true,
-	"explorer.icon.source": "vim-devicons",
+  "explorer.icon.source": "vim-devicons",
+  "markdown-preview-enhanced.previewTheme": "vue.css",
 }

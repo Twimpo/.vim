@@ -42,6 +42,21 @@ let g:AutoPairsFlyMode = 0
 " nmap <leader>e :NERDTreeToggle<CR>
 nmap <leader>e :CocCommand explorer<CR>
 
+" Terminal (vim-floaterm)
+let g:floaterm_autoclose=2
+nnoremap   <silent>   <F5>    :FloatermNew<CR>
+tnoremap   <silent>   <F5>    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <F6>    :FloatermPrev<CR>
+tnoremap   <silent>   <F6>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F7>    :FloatermNext<CR>
+tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F8>    :FloatermToggle<CR>
+tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermToggle<CR>
+" nnoremap   <leader>lg :!gcc % -o 
+" nnoremap   <leader>lp :!python %<CR>
+nnoremap		<leader>lg :FloatermNew! --autoclose=1 gcc % -o %< && ./%<<CR>
+nnoremap		<leader>lp :FloatermNew! --autoclose=1 python %<CR>
+
 " Keymap (Common)
 " Window Navigation
 nmap <C-h> <C-w>h
@@ -60,6 +75,11 @@ vnoremap > >gv
 
 " Vim command 
 nnoremap <leader>w :w<CR>
+nnoremap <leader>Q :qa!<CR>
+
+" Coc plugin 
+" Markdown showing (coc-markdown)
+nnoremap <leader>mo :CocCommand markdown-preview-enhanced.openPreview<CR>
 
 "=== 
 "=== LSP (Coc)
@@ -72,7 +92,9 @@ let g:coc_global_extensions = [
 						\ 'coc-marketplace',
 						\ 'coc-python',
 						\ 'coc-explorer',
-						\ 'coc-clangd']
+						\ 'coc-clangd',
+						\ 'coc-webview',
+						\ 'coc-markdown-preview-enhanced']
 
 " Allow you peek to another file without saving current file ( Save to the
 " buffer )
@@ -117,7 +139,7 @@ nmap <silent><nowait> gi <Plug>(coc-implementation)
 nmap <silent><nowait> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent> <leader>lk :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -136,7 +158,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " Plugin download
 call plug#begin('~/.vim/plugged')
 " Start page
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 
 " Auto Pairs
 Plug 'jiangmiao/auto-pairs'
@@ -147,10 +169,16 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Terminal
+Plug 'voldikss/vim-floaterm'
+
 " Commentary
 Plug 'tpope/vim-commentary'
 
 " LSP
 Plug 'neoclide/coc.nvim', {'branch':'release'}
+
+" Plug
+Plug 'dstein64/vim-startuptime'
 
 call plug#end()
